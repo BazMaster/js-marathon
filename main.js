@@ -1,0 +1,1 @@
+console.log("%c", "color: #ffff00; background-color: #5394EC; padding: 4px; font-size: 16px;")
