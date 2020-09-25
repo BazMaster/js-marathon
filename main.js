@@ -1,113 +1,70 @@
-// #1
-const phrase = prompt('===Задание №1 ===\nУкажите букву для подсчёта', 'а');
-const firstRow = prompt('Укажите первую фразу для подсчёта буквы а', 'мама мыла раму');
-const secondRow = prompt('Укажите вторую фразу для сравнения', 'собака друг человека');
+const $btn_kick = document.getElementById('btn-kick');
+const $btn_flash = document.getElementById('btn-flash');
 
+const character = {
+    name: 'Pikachu',
+    defaultHP: 100,
+    damageHP: 100,
+    elHP: document.getElementById('health-character'),
+    elProgressbar: document.getElementById('progressbar-character'),
+}
 
-function getRow(firstRow, secondRow) {
-    let firstCount = 0;
-    let secondCount = 0;
-    let result;
+const enemy = {
+    name: 'Charmander',
+    defaultHP: 100,
+    damageHP: 100,
+    elHP: document.getElementById('health-enemy'),
+    elProgressbar: document.getElementById('progressbar-enemy'),
+}
 
-    for(let i = 0; i < firstRow.length; i++) {
-        if(firstRow.charAt(i) === phrase) {
-            firstCount++;
-        }
-        if((phrase === 'a' || phrase === 'а') && (firstRow.charAt(i) === 'a' || firstRow.charAt(i) === 'а')) {
-            firstCount++;
-        }
-    }
+$btn_kick.addEventListener('click', function () {
+    console.log('Kick');
+    clickBtn(20);
+})
+$btn_flash.addEventListener('click', function () {
+    console.log('Flash');
+    clickBtn(100);
+})
 
-    for(let i = 0; i < secondRow.length; i++) {
-        if(secondRow.charAt(i) === phrase) {
-            secondCount++;
-        }
-        if((phrase === 'a' || phrase === 'а') && (secondRow.charAt(i) === 'a' || secondRow.charAt(i) === 'а')) {
-            secondCount++;
-        }
-    }
+function init() {
+    console.log('Start Game');
+    renderHP(character);
+    renderHP(enemy);
+}
 
-    if(firstCount > secondCount) {
-        result = firstRow;
-    }
-    else if(firstCount < secondCount) {
-        result = secondRow;
-    }
-    else if(firstCount === 0) {
-        result = 'Такая буква нигде не найдена';
-    }
-    else if(firstCount === secondCount) {
-        result = 'Количество символов одинаково';
+function clickBtn(num) {
+    changeHP(random(num), character);
+    changeHP(random(num), enemy);
+}
+
+function renderHP(person) {
+    renderHPLife(person);
+    renderProgressbarHP(person);
+}
+
+function renderHPLife(person) {
+    person.elHP.innerText = person.damageHP + ' / ' + person.defaultHP;
+}
+
+function renderProgressbarHP(person) {
+    person.elProgressbar.style.width = person.damageHP + '%';
+}
+
+function changeHP(count, person) {
+    if(person.damageHP < count) {
+        person.damageHP = 0;
+        alert('Бедный ' + person.name + ' проиграл бой!');
+        $btn_kick.disabled = true;
+        $btn_flash.disabled = true;
     }
     else {
-        result = 'Такая буква не найдена';
+        person.damageHP -= count;
     }
-
-    return result;
-
+    renderHP(person);
 }
 
-let str = getRow(firstRow, secondRow);
-
-console.log(str);
-alert(str);
-
-
-// #2
-let phone = prompt('=== Задание №2 ===\nУкажите номер телефона для его форматирования', '+71234567890');
-
-if(phone.charAt(0) === '8') {
-    phone = phone.replace('8', '+7');
+function random(num) {
+    return Math.ceil(Math.random() * num);
 }
 
-if(phone.charAt(0) === '9') {
-    phone = phone.replace('9', '+79');
-}
-
-phone = '+' + phone.replace('+', '');
-
-function formattedPhone(phone) {
-    let result = '';
-
-    if(validationPhone(phone)) {
-        for(let i = 0; i < phone.length; i++) {
-            if(i === 2) {
-                result += ' (';
-            }
-            if(i === 5) {
-                result += ') ';
-            }
-            if(i === 8 || i === 10) {
-                result += '-';
-            }
-            result += phone.charAt(i);
-        }
-    }
-    else {
-        result = 'Неверный формат номера!';
-    }
-
-    return result;
-}
-
-function validationPhone(phone) {
-    phone = phone.replace('+', '');
-
-    const len = phone.length;
-    let result = true;
-
-    if(len !== 10 && len !== 11) {
-        result = false;
-    }
-
-    if(isNaN(phone)){
-        result = false;
-    }
-
-    return result;
-}
-
-phone = formattedPhone(phone);
-
-console.log(phone);
-alert(phone);
+init();
