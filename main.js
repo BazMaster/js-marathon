@@ -3,68 +3,83 @@ const $btn_flash = document.getElementById('btn-flash');
 
 const character = {
     name: 'Pikachu',
-    defaultHP: 100,
-    damageHP: 100,
+    defaultHP: 200,
+    damageHP: 200,
+    progress: 100,
     elHP: document.getElementById('health-character'),
     elProgressbar: document.getElementById('progressbar-character'),
+    changeHP: changeHP,
+    renderHP: renderHP,
+    renderHPLife: renderHPLife,
+    renderProgressbarHP: renderProgressbarHP,
 }
 
 const enemy = {
     name: 'Charmander',
-    defaultHP: 100,
-    damageHP: 100,
+    defaultHP: 200,
+    damageHP: 200,
+    progress: 100,
     elHP: document.getElementById('health-enemy'),
     elProgressbar: document.getElementById('progressbar-enemy'),
+    changeHP: changeHP,
+    renderHP: renderHP,
+    renderHPLife: renderHPLife,
+    renderProgressbarHP: renderProgressbarHP,
+}
+
+init();
+
+function init() {
+    character.renderHP();
+    enemy.renderHP();
 }
 
 $btn_kick.addEventListener('click', function () {
-    console.log('Kick');
     clickBtn(20);
 })
 $btn_flash.addEventListener('click', function () {
-    console.log('Flash');
     clickBtn(100);
 })
 
-function init() {
-    console.log('Start Game');
-    renderHP(character);
-    renderHP(enemy);
-}
-
 function clickBtn(num) {
-    changeHP(random(num), character);
-    changeHP(random(num), enemy);
+    character.changeHP(random(num));
+    enemy.changeHP(random(num));
 }
 
-function renderHP(person) {
-    renderHPLife(person);
-    renderProgressbarHP(person);
-}
+function changeHP(count) {
+    let progress;
+    progress = count / this.defaultHP * 100;
+    progress = this.progress - Math.ceil(progress);
 
-function renderHPLife(person) {
-    person.elHP.innerText = person.damageHP + ' / ' + person.defaultHP;
-}
-
-function renderProgressbarHP(person) {
-    person.elProgressbar.style.width = person.damageHP + '%';
-}
-
-function changeHP(count, person) {
-    if(person.damageHP < count) {
-        person.damageHP = 0;
-        alert('Бедный ' + person.name + ' проиграл бой!');
+    if(this.damageHP < count) {
+        this.damageHP = 0;
+        progress = 0;
+        alert('Бедный ' + this.name + ' проиграл бой!');
         $btn_kick.disabled = true;
         $btn_flash.disabled = true;
     }
     else {
-        person.damageHP -= count;
+        this.damageHP -= count;
     }
-    renderHP(person);
+    this.progress = progress;
+    this.renderHP();
+}
+
+function renderHP() {
+    this.renderHPLife();
+    this.renderProgressbarHP();
+}
+
+function renderHPLife() {
+    this.elHP.innerText = this.progress + ' / 100';
+}
+
+function renderProgressbarHP() {
+    this.elProgressbar.style.width = this.progress + '%';
 }
 
 function random(num) {
     return Math.ceil(Math.random() * num);
 }
 
-init();
+
