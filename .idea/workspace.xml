@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="homework-5" />
+                    <option name="lastUsedInstant" value="1601527670" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="homework-4" />
                     <option name="lastUsedInstant" value="1601316502" />
@@ -87,7 +90,8 @@
       <workItem from="1600676908273" duration="1669000" />
       <workItem from="1600848240186" duration="9995000" />
       <workItem from="1601026061165" duration="3162000" />
-      <workItem from="1601522739843" duration="4714000" />
+      <workItem from="1601522739843" duration="5429000" />
+      <workItem from="1601788994223" duration="2993000" />
     </task>
     <servers />
   </component>
@@ -175,10 +179,10 @@
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="1458" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601355419007" />
-    <state x="1982" y="243" key="run.anything.popup" timestamp="1600857373133">
+    <state x="1982" y="243" key="run.anything.popup" timestamp="1601830752912">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
-    <state x="1982" y="243" key="run.anything.popup/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1600857373133" />
+    <state x="1982" y="243" key="run.anything.popup/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601830752912" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/jsMarathon$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1600856291223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

@@ -33,6 +33,17 @@ const enemy = {
     renderProgressbarHP,
 }
 
+const btnCounter = {
+    kick: {
+        default: 6,
+        current: 6
+    },
+    flash: {
+        default: 3,
+        current: 3
+    },
+}
+
 init();
 
 function init() {
@@ -42,15 +53,32 @@ function init() {
 
 $btn_kick.addEventListener('click', function () {
     clickBtn(20);
+    characterCounter($btn_kick);
 })
 $btn_flash.addEventListener('click', function () {
     clickBtn(100);
+    enemyCounter($btn_flash);
 })
 
 function clickBtn(num) {
     character.changeHP(random(num));
     enemy.changeHP(random(num));
 }
+
+function counter(count) {
+    return function($btn) {
+        count--;
+        console.log(count);
+        $btn.querySelector('span').innerText = count;
+        if(count === 0) {
+            $btn.disabled = true;
+        }
+        return count;
+    }
+}
+
+const characterCounter = counter(6);
+const enemyCounter = counter(3);
 
 function changeHP(count) {
     const { name, defaultHP } = this;
