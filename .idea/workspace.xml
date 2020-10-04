@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +28,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="homework-6" />
+                    <option name="lastUsedInstant" value="1601831130" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="homework-5" />
                     <option name="lastUsedInstant" value="1601527670" />
                   </RecentBranch>
@@ -41,10 +46,6 @@
                   <RecentBranch>
                     <option name="branchName" value="homework-3" />
                     <option name="lastUsedInstant" value="1601026105" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="homework-2" />
-                    <option name="lastUsedInstant" value="1600859931" />
                   </RecentBranch>
                 </list>
               </option>
@@ -91,7 +92,7 @@
       <workItem from="1600848240186" duration="9995000" />
       <workItem from="1601026061165" duration="3162000" />
       <workItem from="1601522739843" duration="5429000" />
-      <workItem from="1601788994223" duration="2993000" />
+      <workItem from="1601788994223" duration="4916000" />
     </task>
     <servers />
   </component>

@@ -12,7 +12,7 @@ const character = {
     progress: 100,
     elHP: $getElById('health-character'),
     elProgressbar: $getElById('progressbar-character'),
-    elLog: '#log-1',
+    elLog: 'log-1',
     changeHP,
     renderHP,
     renderHPLife,
@@ -26,7 +26,7 @@ const enemy = {
     progress: 100,
     elHP: $getElById('health-enemy'),
     elProgressbar: $getElById('progressbar-enemy'),
-    elLog: '#log-2',
+    elLog: 'log-2',
     changeHP,
     renderHP,
     renderHPLife,
@@ -34,14 +34,8 @@ const enemy = {
 }
 
 const btnCounter = {
-    kick: {
-        default: 6,
-        current: 6
-    },
-    flash: {
-        default: 3,
-        current: 3
-    },
+    kick: 100,
+    flash: 3,
 }
 
 init();
@@ -49,15 +43,16 @@ init();
 function init() {
     character.renderHP();
     enemy.renderHP();
+    renderButtons();
 }
 
 $btn_kick.addEventListener('click', function () {
     clickBtn(20);
-    characterCounter($btn_kick);
+    kickCounter($btn_kick);
 })
 $btn_flash.addEventListener('click', function () {
     clickBtn(100);
-    enemyCounter($btn_flash);
+    flashCounter($btn_flash);
 })
 
 function clickBtn(num) {
@@ -77,8 +72,8 @@ function counter(count) {
     }
 }
 
-const characterCounter = counter(6);
-const enemyCounter = counter(3);
+const kickCounter = counter(btnCounter.kick);
+const flashCounter = counter(btnCounter.flash);
 
 function changeHP(count) {
     const { name, defaultHP } = this;
@@ -91,7 +86,7 @@ function changeHP(count) {
     if(this.damageHP <= 0) {
         this.damageHP = 0;
         progress = 0;
-        alert('Бедный ' + name + ' проиграл бой!');
+        // alert('Бедный ' + name + ' проиграл бой!');
         $btn_kick.disabled = true;
         $btn_flash.disabled = true;
     }
@@ -105,6 +100,12 @@ function changeHP(count) {
 function renderHP() {
     this.renderHPLife();
     this.renderProgressbarHP();
+}
+
+function renderButtons() {
+    console.log('render btn');
+    $btn_kick.querySelector('span').innerText = btnCounter.kick;
+    $btn_flash.querySelector('span').innerText = btnCounter.flash;
 }
 
 function renderHPLife() {
@@ -122,25 +123,25 @@ function random(num) {
 function generateLog(firstPerson, secondPerson, count) {
     const { name, damageHP, progress, elLog } = firstPerson;
     const logs = [
-        `${name} вспомнил что-то важное, но неожиданно ${secondPerson.name}, не помня себя от испуга, ударил в предплечье врага.\n\n-${count}, [${progress}/100]`,
-        `${name} поперхнулся, и за это ${secondPerson.name} с испугу приложил прямой удар коленом в лоб врага.\n\n-${count}, [${progress}/100]`,
-        `${name} забылся, но в это время наглый ${secondPerson.name}, приняв волевое решение, неслышно подойдя сзади, ударил.\n\n-${count}, [${progress}/100]`,
-        `${name} пришел в себя, но неожиданно ${secondPerson.name} случайно нанес мощнейший удар.\n\n-${count}, [${progress}/100]`,
-        `${name} поперхнулся, но в это время ${secondPerson.name} нехотя раздробил кулаком \<вырезанно цензурой\> противника.\n\n-${count}, [${progress}/100]`,
-        `${name} удивился, а ${secondPerson.name} пошатнувшись влепил подлый удар.\n\n-${count}, [${progress}/100]`,
-        `${name} высморкался, но неожиданно ${secondPerson.name} провел дробящий удар.\n\n-${count}, [${progress}/100]`,
-        `${name} пошатнулся, и внезапно наглый ${secondPerson.name} беспричинно ударил в ногу противника\n\n-${count}, [${progress}/100]`,
-        `${name} расстроился, как вдруг, неожиданно ${secondPerson.name} случайно влепил стопой в живот соперника.\n\n-${count}, [${progress}/100]`,
-        `${name} пытался что-то сказать, но вдруг, неожиданно ${secondPerson.name} со скуки, разбил бровь сопернику.\n\n-${count}, [${progress}/100]`
+        `<strong>${name}</strong> вспомнил что-то важное, но неожиданно <strong>${secondPerson.name}</strong>, не помня себя от испуга, ударил в предплечье врага.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> поперхнулся, и за это <strong>${secondPerson.name}</strong> с испугу приложил прямой удар коленом в лоб врага.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> забылся, но в это время наглый <strong>${secondPerson.name}</strong>, приняв волевое решение, неслышно подойдя сзади, ударил.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> пришел в себя, но неожиданно <strong>${secondPerson.name}</strong> случайно нанес мощнейший удар.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> поперхнулся, но в это время <strong>${secondPerson.name}</strong> нехотя раздробил кулаком \<вырезанно цензурой\> противника.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> удивился, а <strong>${secondPerson.name}</strong> пошатнувшись влепил подлый удар.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> высморкался, но неожиданно <strong>${secondPerson.name}</strong> провел дробящий удар.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> пошатнулся, и внезапно наглый <strong>${secondPerson.name}</strong> беспричинно ударил в ногу противника<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> расстроился, как вдруг, неожиданно <strong>${secondPerson.name}</strong> случайно влепил стопой в живот соперника.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`,
+        `<strong>${name}</strong> пытался что-то сказать, но вдруг, неожиданно <strong>${secondPerson.name}</strong> со скуки, разбил бровь сопернику.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${progress}% из 100%</span>`
     ];
     const log = logs[random(logs.length) - 1];
     const $p = document.createElement('p');
-    const $logs = document.querySelector(elLog);
-    $p.innerText = log;
+    const $logs = $getElById(elLog);
+    $p.innerHTML = log;
     $logs.insertBefore($p, $logs.children[0]);
 
     if(damageHP === 0) {
-        $p.innerText = 'Бедный ' + name + ' проиграл бой!';
+        $p.innerHTML = 'Бедный <strong>' + name + '</strong> проиграл бой!';
         $p.setAttribute('class', 'fail');
         $logs.insertBefore($p, $logs.children[0]);
     }
