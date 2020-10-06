@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d4f3023-15e8-4676-966e-797ed5ea70ba" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/js/pokemon.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
@@ -28,6 +30,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="homework-8" />
+                    <option name="lastUsedInstant" value="1602007729" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="homework-6" />
                     <option name="lastUsedInstant" value="1601831130" />
                   </RecentBranch>
@@ -43,10 +49,6 @@
                     <option name="branchName" value="master" />
                     <option name="lastUsedInstant" value="1601316484" />
                   </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="homework-3" />
-                    <option name="lastUsedInstant" value="1601026105" />
-                  </RecentBranch>
                 </list>
               </option>
               <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
@@ -57,6 +59,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1hoUOW6QvoDIRxG06jrTX7H1sIr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -67,7 +72,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -92,7 +97,9 @@
       <workItem from="1600848240186" duration="9995000" />
       <workItem from="1601026061165" duration="3162000" />
       <workItem from="1601522739843" duration="5429000" />
-      <workItem from="1601788994223" duration="4916000" />
+      <workItem from="1601788994223" duration="5985000" />
+      <workItem from="1601906027192" duration="5685000" />
+      <workItem from="1602004577103" duration="3180000" />
     </task>
     <servers />
   </component>
@@ -172,18 +179,23 @@
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state width="1877" height="338" key="GridCell.Tab.3.right/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1600869213233" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1600677265303">
-      <screen x="0" y="0" width="1366" height="707" />
+    <state x="1625" y="0" key="SettingsEditor" timestamp="1601958606039">
+      <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.707/1366.0.1920.1050@0.0.1366.707" timestamp="1600677265303" />
+    <state x="1625" y="0" key="SettingsEditor/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601958606039" />
     <state x="1458" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1601355419007">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
     <state x="1458" y="92" width="1736" height="866" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601355419007" />
-    <state x="1982" y="243" key="run.anything.popup" timestamp="1601830752912">
+    <state x="2040" y="233" width="571" height="584" key="find.popup" timestamp="1602006494812">
       <screen x="1366" y="0" width="1920" height="1050" />
     </state>
-    <state x="1982" y="243" key="run.anything.popup/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601830752912" />
+    <state x="2040" y="233" width="571" height="584" key="find.popup/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1602006494812" />
+    <state x="1982" y="243" key="run.anything.popup" timestamp="1601906253543">
+      <screen x="1366" y="0" width="1920" height="1050" />
+    </state>
+    <state x="1982" y="243" key="run.anything.popup/0.0.1366.707/1366.0.1920.1050@1366.0.1920.1050" timestamp="1601906253543" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/jsMarathon$index_html.dat" NAME="index.html Coverage Results" MODIFIED="1600856291223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
