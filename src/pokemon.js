@@ -6,7 +6,7 @@ class Selectors {
     }
 }
 class Pokemon extends Selectors {
-    constructor({ name, hp, type, selectors, attacks = [] }) {
+    constructor({ name, hp, type, selectors, attacks = [], img = '' }) {
         super(selectors);
 
         this.name = name;
@@ -16,6 +16,8 @@ class Pokemon extends Selectors {
         };
         this.type = type;
         this.attacks = attacks;
+        this.img = img;
+        this.selectors = selectors;
 
         this.renderHP();
     }
@@ -46,6 +48,14 @@ class Pokemon extends Selectors {
         const { hp: { current, total }, elProgressbar } = this;
         const percent = current / (total / 100);
         elProgressbar.style.width = percent + '%';
+
+        if(current < 60 && current > 20) {
+            elProgressbar.classList.add('low');
+        }
+        else if(current < 20) {
+            elProgressbar.classList.add('critical');
+        }
+
     }
 
 }
