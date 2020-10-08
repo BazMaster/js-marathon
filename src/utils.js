@@ -1,60 +1,9 @@
-import Pokemon from "./js/pokemon.js";
-import random from "./js/utils.js";
-
-const player1 = new Pokemon({
-    name: 'Pikachu',
-    type: 'electric',
-    hp: 500,
-    selectors: 'character',
-})
-const player2 = new Pokemon({
-    name: 'Charmander',
-    type: 'fire',
-    hp: 450,
-    selectors: 'enemy',
-})
-
-function $getElById(id) {
-    return document.getElementById(id);
+export function random(max, min = 0) {
+    const num = max - min;
+    return Math.ceil(Math.random() * num) + min;
 }
 
-const $btn1 = $getElById('btn-kick');
-const btnCountKick = countBtn(6, $btn1);
-$btn1.addEventListener('click', function () {
-    btnCountKick();
-    player1.changeHP(random(160,20), function(count) {
-        generateLog(player1, player2, count);
-    });
-    player2.changeHP(random(160,20), function(count) {
-        generateLog(player2, player1, count);
-    });
-})
-
-const $btn2 = $getElById('btn-flash');
-const btnCountFlash = countBtn(10, $btn2);
-$btn2.addEventListener('click', function () {
-    btnCountFlash();
-    player1.changeHP(random(20), function(count) {
-        generateLog(player1, player2, count);
-    });
-    player2.changeHP(random(20), function(count) {
-        generateLog(player2, player1, count);
-    });
-})
-
-const $btn3 = $getElById('btn-electro');
-const btnCountElectro = countBtn(50, $btn3);
-$btn3.addEventListener('click', function () {
-    btnCountElectro();
-    player1.changeHP(random(20), function(count) {
-        generateLog(player1, player2, count);
-    });
-    player2.changeHP(random(20), function(count) {
-        generateLog(player2, player1, count);
-    });
-})
-
-function countBtn(count = 6, el) {
+export function countBtn(count = 6, el) {
     const innerText = el.innerText;
     el.innerText = `${innerText} (${count})`;
     return function($btn) {
@@ -67,7 +16,7 @@ function countBtn(count = 6, el) {
     }
 }
 
-function generateLog(firstPerson, secondPerson, count) {
+export function generateLog(firstPerson, secondPerson, count) {
     const { name, hp: { current, total }, elLog } = firstPerson;
     const logs = [
         `<strong>${name}</strong> вспомнил что-то важное, но неожиданно <strong>${secondPerson.name}</strong>, не помня себя от испуга, ударил в предплечье врага.<br><br>Урон <span class="text-red">-${count}</span><br>У ${name} осталось здоровья <span class="text-green">${current} из ${total}</span>`,
@@ -95,3 +44,4 @@ function generateLog(firstPerson, secondPerson, count) {
         $btn3.disabled = true;
     }
 }
+
