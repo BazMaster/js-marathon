@@ -1,3 +1,6 @@
+import Game from "./game.js";
+import Sound from "./sound";
+
 class Selectors {
     constructor(name) {
         this.elHP = document.getElementById(`health-${name}`);
@@ -27,7 +30,10 @@ class Pokemon extends Selectors {
 
         if(this.hp.current <= 0) {
             this.hp.current = 0;
+            new Game().resetGame();
         }
+
+        new Sound().hit(this);
 
         this.renderHP();
         cb && cb(count);

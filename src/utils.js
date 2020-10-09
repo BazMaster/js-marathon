@@ -39,9 +39,6 @@ export function generateLog(firstPerson, secondPerson, count) {
         $p.innerHTML = 'Бедный <strong>' + name + '</strong> проиграл бой!';
         $p.setAttribute('class', 'fail');
         elLog.insertBefore($p, elLog.children[0]);
-        $btn1.disabled = true;
-        $btn2.disabled = true;
-        $btn3.disabled = true;
     }
 }
 

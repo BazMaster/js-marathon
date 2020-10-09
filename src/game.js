@@ -1,10 +1,11 @@
-import Pokemon from "./pokemon.js";
-import { pokemons } from "./pokemons.js";
-import { random, generateLog, countBtn } from "./utils.js";
+import Pokemon from "./pokemon";
+import Sound from "./sound";
+import { pokemons } from "./pokemons";
+import { random, generateLog, countBtn } from "./utils";
 
 class Game {
     constructor() {
-        this.control = document.querySelector('.control');        
+        this.control = document.querySelector('.control');
     }
 
     startGame = () => {
@@ -21,6 +22,7 @@ class Game {
         $btn.innerText = 'Начать игру';
 
         $btn.addEventListener('click', () => {
+            this.sound().play('start');
             this.getPlayers();
             this.clearButtons();
             this.showButtons();
@@ -54,20 +56,18 @@ class Game {
             $btn.addEventListener('click', () => {
                 btnCount();
 
-                let player1Damage = random(item.maxDamage, item.minDamage);
-                let player2Damage = random(this.player2.attacks[0].maxDamage, this.player2.attacks[0].minDamage);
-                let player1 = this.player1;
-                let player2 = this.player2;
+                const player1Damage = random(item.maxDamage, item.minDamage);
+                const player2Damage = random(this.player2.attacks[0].maxDamage, this.player2.attacks[0].minDamage);
+                const player1 = this.player1;
+                const player2 = this.player2;
 
-                if(this.player1.hp.current === 0 || this.player2.hp.current === 0) {
-                    this.resetGame();
-                }
-
-                this.player1.changeHP(player2Damage, function(count) {
+                this.player1.changeHP(player2Damage, function() {
                     generateLog(player1, player2, player2Damage);
                 });
-                this.player2.changeHP(player1Damage, function(count) {
-                    generateLog(player2, player1, player1Damage);
+                this.player2.changeHP(player1Damage, function() {
+                    setTimeout(() => {
+                        generateLog(player2, player1, player1Damage);
+                    }, 300);
                 });
 
             });
@@ -96,8 +96,11 @@ class Game {
         const id = player.selectors;
         const name = document.getElementById('name-' + id);
         const img = document.getElementById('img-' + id);
+        const type = document.getElementById('type-' + id);
         name.innerText = player.name;
         img.src = player.img;
+        type.src = '/assets/type_' + player.type + '.png';
+        type.title = player.type;
         console.log(player.img)
 
         player.elProgressbar.classList.remove('low');
@@ -105,6 +108,10 @@ class Game {
 
         player.hp.current = player.hp.total;
         player.renderHP();
+    }
+
+    sound = () => {
+        return new Sound();
     }
 }
 
