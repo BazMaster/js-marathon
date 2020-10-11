@@ -1,7 +1,8 @@
 import Pokemon from "./pokemon";
+import ajaxData from "./ajax";
 import Sound from "./sound";
-import { pokemons } from "./pokemons";
-import { random, generateLog, countBtn } from "./utils";
+import Log from "./log";
+import { random, countBtn } from "./utils";
 
 class Game {
     constructor() {
@@ -21,13 +22,13 @@ class Game {
         $btn.classList.add('button');
         $btn.innerText = 'Начать игру';
 
-        $btn.addEventListener('click', () => {
+        $btn.addEventListener('click', async () => {
             this.sound().play('start');
-            this.getPlayers();
-            this.clearButtons();
-            this.showButtons();
-            this.renderPlayer(this.player1);
-            this.renderPlayer(this.player2);
+            await this.getPlayers();
+            await this.clearButtons();
+            await this.showButtons();
+            await this.renderPlayer(this.player1);
+            await this.renderPlayer(this.player2);
         });
 
         this.control.appendChild($btn);
@@ -53,22 +54,22 @@ class Game {
             $btn.innerText = item.name;
             const btnCount = countBtn(item.maxCount, $btn);
 
-            $btn.addEventListener('click', () => {
+            $btn.addEventListener('click', async () => {
                 btnCount();
 
-                const player1Damage = random(item.maxDamage, item.minDamage);
-                const player2Damage = random(this.player2.attacks[0].maxDamage, this.player2.attacks[0].minDamage);
-                const player1 = this.player1;
-                const player2 = this.player2;
+                const data = new ajaxData(this.player1.id, item.id, this.player2.id);
+                const fight = await data.getData('fight');
 
-                this.player1.changeHP(player2Damage, function() {
-                    generateLog(player1, player2, player2Damage);
+                this.player2.changeHP(fight.kick.player1, this.player1,() => {
+                    new Log().generateLog(this.player1, this.player2, fight.kick.player1);
+                    this.animate(this.player1)
                 });
-                this.player2.changeHP(player1Damage, function() {
-                    setTimeout(() => {
-                        generateLog(player2, player1, player1Damage);
-                    }, 300);
-                });
+                setTimeout(() => {
+                    this.player1.changeHP(fight.kick.player2, this.player2,() => {
+                        new Log().generateLog(this.player2, this.player1, fight.kick.player2);
+                    });
+                    this.animate(this.player2)
+                }, 500);
 
             });
             this.control.appendChild($btn);
@@ -76,10 +77,14 @@ class Game {
 
     }
 
-    getPlayers = () => {
-        let len = pokemons.length - 1;
-        let player1 = pokemons[random(len)];
-        let player2 = pokemons[random(len)];
+    getPlayers = async () => {
+        console.log('getPlayers');
+        const data = new ajaxData();
+        const pokemons = await data.getData('pokemons');
+        console.log('pokemons: ', pokemons);
+        const len = pokemons.length - 1;
+        const player1 = pokemons[random(len)];
+        const player2 = pokemons[random(len)];
 
         this.player1 = new Pokemon({
             ...player1,
@@ -106,6 +111,9 @@ class Game {
         player.elProgressbar.classList.remove('low');
         player.elProgressbar.classList.remove('critical');
 
+        const $hp = document.querySelectorAll('.hp');
+        $hp.forEach($item => $item.classList.remove('hidden'));
+
         player.hp.current = player.hp.total;
         player.renderHP();
     }
@@ -113,6 +121,18 @@ class Game {
     sound = () => {
         return new Sound();
     }
+
+    animate = (player) => {
+        console.log('ANIMATE');
+        const typeEl = document.getElementById('type-' + player.selectors);
+        const effect = 'wobble';
+        const class_name = 'animate__' + effect;
+        typeEl.classList.add(class_name);
+        setTimeout(() => {
+            typeEl.classList.remove(class_name);
+        }, 200);
+    }
+
 }
 
 export default Game;

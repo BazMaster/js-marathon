@@ -9,9 +9,10 @@ class Selectors {
     }
 }
 class Pokemon extends Selectors {
-    constructor({ name, hp, type, selectors, attacks = [], img = '' }) {
+    constructor({ id, name, hp, type, selectors, attacks = [], img = '' }) {
         super(selectors);
 
+        this.id = id;
         this.name = name;
         this.hp = {
             current: hp,
@@ -25,7 +26,7 @@ class Pokemon extends Selectors {
         this.renderHP();
     }
 
-    changeHP = (count, cb) => {
+    changeHP = (count, enemy, cb) => {
         this.hp.current -= count;
 
         if(this.hp.current <= 0) {
@@ -33,7 +34,7 @@ class Pokemon extends Selectors {
             new Game().resetGame();
         }
 
-        new Sound().hit(this);
+        new Sound().hit(this, enemy);
 
         this.renderHP();
         cb && cb(count);

@@ -40,7 +40,6 @@ body {
     position: relative;
     margin: 20px;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -535,4 +534,23 @@ h1 {
     top: 15px;
     right: 20px;
     z-index: 2;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .playground {
+        display: block;
+    }
+    .playground .pokemon,
+    .playground .control {
+        margin: 20px auto;
+    }
+    .log {
+        width: 90%;
+        margin: 10px auto 15px;
+        float: none;
+    }
 }
