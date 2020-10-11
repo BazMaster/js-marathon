@@ -40,6 +40,7 @@ body {
     position: relative;
     margin: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -276,7 +277,7 @@ body {
     outline: none !important;
     cursor: pointer;
     font-size: 18px;
-    margin: 0 20px;
+    margin: 10px;
 }
 .button:after {
     content: "";
@@ -486,4 +487,70 @@ h1 {
 
 .action label {
     padding: 6px 0;
+}
+
+.log {
+    text-align: left;
+    position: relative;
+    width: 50%;
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #ffffff78;
+    float: left;
+    border-radius: 10px;
+    margin: 10px;
+}
+.log p {
+    border: 3px solid #fff;
+    background-color: #cfeaff;
+    color: #15171b;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+.log p span {
+    font-weight: bold;
+}
+.log p.fail {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+
+::-webkit-scrollbar { /* chrome based */
+    width: 0;
+    background: transparent;
+}
+
+.text-red {
+    color: red;
+}
+.text-green {
+    color: green;
+}
+
+#type-player1, #type-player2 {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 2;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .playground {
+        display: block;
+    }
+    .playground .pokemon,
+    .playground .control {
+        margin: 20px auto;
+    }
+    .log {
+        width: 90%;
+        margin: 10px auto 15px;
+        float: none;
+    }
 }
